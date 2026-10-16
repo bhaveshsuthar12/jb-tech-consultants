@@ -1,111 +1,98 @@
 "use client";
 
-const reviews = [
-  {
-    name: "Kunal Gour",
-    text: "Best soil testing agency in chittorgarh",
-  },
-  {
-    name: "sonu Mistry",
-    text: "Best rock drilling agency",
-  },
-  {
-    name: "Ayush Jaiswal",
-    text: "Best mineral lab in Chittorgarh",
-  },
-  {
-    name: "akash garg",
-    text: "best soil agency in chittorgarh",
-  },
-  {
-    name: "Santosh Suthar",
-    text: "Best agriculture soil testing and construction soil testing agency in chittorgarh",
-  },
-  {
-    name: "Prakash Kumar Sen",
-    text: "Best agency for bridge design & material testing",
-  },
-  {
-    name: "Vishal Sharma",
-    text: "Accuracy 99.9 percent good lab and their results",
-  },
-  {
-    name: "illusion BAISA_HKM",
-    text: "Good lab accurate results for food. Excellent 👌👌",
-  },
-  {
-    name: "Abhishek Suthar",
-    text: "Very professional soil testing lab. Accurate reports, fast service, and helpful staff. Highly recommended for construction and agricultural soil testing.",
-  },
-  {
-    name: "Devendra Singh Rao",
-    text: "Professional and reliable Mineral & Civil Testing Consulting Agency. They provide accurate testing reports and excellent technical guidance. The team is knowledgeable and the service is timely and trustworthy. Highly recommended.",
-  },
-];
+import { Star, ShieldCheck, ExternalLink, MessageSquareQuote } from "lucide-react";
+import { clientReviewsData, businessInfo } from "../data/servicesData";
 
 export default function Reviews() {
   return (
     <section id="reviews" className="reviews-section">
-      <div className="reviews-container">
+      <div className="section-container">
+        {/* Section Heading with Google 5.0 badge */}
+        <div className="reviews-header-block">
+          <div className="section-label">08 / VERIFIED CLIENT FEEDBACK</div>
+          <div className="reviews-header-flex">
+            <div>
+              <h2 className="section-title">
+                Client Testimonials &amp; <em>Verified Reviews.</em>
+              </h2>
+              <p className="section-subtitle">
+                Authentic feedback from civil contractors, mining operators, farmers, and builders across Rajasthan who rely on our laboratory and surveying teams.
+              </p>
+            </div>
 
-        <div className="reviews-heading">
-          <p className="reviews-label">CLIENT FEEDBACK</p>
-
-          <h2>
-            What Our <span>Clients Say</span>
-          </h2>
-
-          <p className="reviews-subtitle">
-            Trusted by clients for reliable testing, surveying and
-            technical consultancy services.
-          </p>
-
-          <div className="google-rating">
-            <span className="google-stars">★★★★★</span>
-            <strong>5.0</strong>
-            <span>Google Reviews</span>
+            {/* Google Rating Overview Badge */}
+            <div className="google-rating-card">
+              <div className="google-icon-wrapper">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                </svg>
+              </div>
+              <div className="google-rating-content">
+                <div className="stars-row">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} className="star-filled" fill="#f59e0b" color="#f59e0b" />
+                  ))}
+                  <strong className="rating-number">5.0</strong>
+                </div>
+                <span className="rating-label">Google Verified Reviews</span>
+                <span className="rating-sub">Chittorgarh Business Listing</span>
+              </div>
+            </div>
           </div>
         </div>
 
+        {/* Reviews Cards Grid */}
         <div className="reviews-grid">
-          {reviews.map((review, index) => (
-            <div className="review-card" key={index}>
-
-              <div className="review-top">
-                <div className="review-avatar">
-                  {review.name.charAt(0).toUpperCase()}
+          {clientReviewsData.map((review, index) => {
+            const initial = review.name.charAt(0).toUpperCase();
+            return (
+              <article className="review-card" key={index}>
+                <div className="review-card-top">
+                  <div className="review-avatar-box">
+                    <span className="review-avatar-letter">{initial}</span>
+                  </div>
+                  <div className="review-user-info">
+                    <h3 className="review-client-name">{review.name}</h3>
+                    <div className="review-stars-wrap">
+                      {[...Array(review.stars)].map((_, i) => (
+                        <Star key={i} size={13} fill="#f59e0b" color="#f59e0b" />
+                      ))}
+                      <span className="review-tag">{review.tag}</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div>
-                  <h3>{review.name}</h3>
-                  <div className="review-stars">★★★★★</div>
+                <div className="review-quote-body">
+                  <MessageSquareQuote size={20} className="review-quote-icon" />
+                  <p className="review-text">"{review.text}"</p>
                 </div>
-              </div>
 
-              <p className="review-text">
-                “{review.text}”
-              </p>
-
-              <div className="review-source">
-                <span>Google</span>
-                <span>Verified Review</span>
-              </div>
-
-            </div>
-          ))}
+                <div className="review-card-footer">
+                  <span className="review-verified-pill">
+                    <ShieldCheck size={13} /> Verified Client Review
+                  </span>
+                  <span className="review-platform">Google Maps</span>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
-        <div className="reviews-button-wrapper">
+        {/* External Link Action */}
+        <div className="reviews-footer-cta">
           <a
-            href="https://maps.app.goo.gl/EpYLHGk3XWV8uBSZ7?g_st=ac"
+            href={businessInfo.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="reviews-button"
+            className="btn-google-reviews"
           >
-            See all reviews on Google →
+            <span>See Verified Reviews on Google Maps</span>
+            <ExternalLink size={16} />
           </a>
         </div>
-
       </div>
     </section>
   );

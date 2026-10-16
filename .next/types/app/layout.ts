@@ -1,4 +1,4 @@
-// File: C:\Users\ASUS\OneDrive\Documents\jb-tech-consultants-ready-local-gallery\app\layout.tsx
+// File: C:\Users\ASUS\OneDrive\Desktop\jb tech\jb-tech-consultants\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

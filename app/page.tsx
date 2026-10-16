@@ -1,247 +1,550 @@
-import { PlaceGallery } from "./components/PlaceGallery";
-import { WhatsAppButton } from "./components/WhatsAppButton";
-import Reviews from "./components/Review";
+import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
-  ChevronDown,
+  Phone,
+  MessageCircle,
+  MapPinned,
+  ShieldCheck,
   Compass,
-  Droplets,
-  FlaskConical,
+  Layers3,
   Gem,
   HardHat,
-  Layers3,
-  MapPinned,
-  Mountain,
-  Pickaxe,
-  Ruler,
-  Search,
-  ShieldCheck,
   Sprout,
+  Droplets,
   Building2,
-  Phone,
-  MessageCircle
+  FlaskConical,
+  Wrench,
+  Clock,
+  ChevronDown,
+  User,
+  MapPin,
+  ExternalLink,
+  Award,
+  Truck
 } from "lucide-react";
+import { Navbar } from "./components/Navbar";
+import { ServicesSection } from "./components/ServicesSection";
+import { PlaceGallery } from "./components/PlaceGallery";
+import Reviews from "./components/Review";
+import { QuoteForm } from "./components/QuoteForm";
+import { Footer } from "./components/Footer";
+import { WhatsAppButton } from "./components/WhatsAppButton";
+import { businessInfo, industriesData, createWhatsAppUrl } from "./data/servicesData";
 
-const mapsUrl =
-  "https://maps.app.goo.gl/EpYLHGk3XWV8uBSZ7?g_st=ac";
-const phone = "+917728053323";
-
-const services = [
-  { title: "Mining Exploration", icon: Pickaxe, text: "Technical exploration support for mining and mineral-related requirements." },
-  { title: "Mineral Testing", icon: Gem, text: "Testing-focused technical support for mineral and geological materials." },
-  { title: "Geotechnical Surveys", icon: Layers3, text: "Site and subsurface investigation support for engineering requirements." },
-  { title: "Soil Testing", icon: Mountain, text: "Soil investigation and testing support for construction and land-use decisions." },
-  { title: "Infrastructure & Agriculture", icon: Sprout, text: "Technical services supporting infrastructure and agricultural requirements." },
-  { title: "Food Testing", icon: FlaskConical, text: "Testing support for food-related quality and analysis requirements." },
-  { title: "Raw Material Testing", icon: Search, text: "Technical testing support for raw materials and industrial applications." },
-  { title: "Land Surveys", icon: Ruler, text: "Surveying services to support land planning, development and documentation." },
-  { title: "Ground Water Surveys", icon: Droplets, text: "Groundwater investigation and survey support for water-related planning." },
-  { title: "Structural Consultancy", icon: Building2, text: "Technical structural consultancy for relevant engineering requirements." },
-  { title: "Diamond Core Drilling Services", icon: Compass, text: "Diamond core drilling support for geological and site investigation work." }
-];
-
-const industries = [
-  ["Construction & Infrastructure", HardHat],
-  ["Mining & Minerals", Gem],
-  ["Agriculture", Sprout],
-  ["Water & Groundwater", Droplets],
-  ["Manufacturing", Building2],
-  ["Food & Raw Materials", FlaskConical],
-  ["Land & Property Development", MapPinned]
-] as const;
-
-function wa(service?: string) {
-  const message = service
-    ? `Hello JB Tech Consultants, I am interested in ${service}. Please share the details and quotation.`
-    : "Hello JB Tech Consultants, I would like to enquire about your services.";
-  return `https://wa.me/917728053323?text=${encodeURIComponent(message)}`;
-}
+const industryIconMap: Record<string, React.ElementType> = {
+  Gem,
+  HardHat,
+  Sprout,
+  Droplets,
+  Building2,
+  FlaskConical,
+  MapPinned
+};
 
 export default function Home() {
   return (
-    <main>
-      <header className="nav">
-        <a className="brand" href="#home" aria-label="JB Tech Consultants home">
-          <span className="brand-mark">JB</span>
-          <span><strong>JB TECH</strong><small>CONSULTANTS</small></span>
-        </a>
-        <nav className="desktop-nav">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#industries">Industries</a>
-          <a href="#why-us">Why Us</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <div className="nav-actions">
-          <a className="wa-outline" href={wa()} target="_blank" rel="noreferrer"><MessageCircle size={17}/> WhatsApp</a>
-          <a className="gold-btn" href="#contact">Get a Consultation</a>
-        </div>
-      </header>
+    <div className="site-wrapper">
+      <Navbar />
 
-      <section id="home" className="hero">
-        <div className="hero-grid"></div>
-        <div className="hero-contour"></div>
-        <div className="hero-content">
-          <p className="eyebrow">TECHNICAL CONSULTING · TESTING · SURVEYING</p>
-          <h1>Engineering, Testing &amp; Survey Solutions <em>You Can Trust.</em></h1>
-          <p className="hero-copy">
-            Professional testing, surveying, exploration and engineering consultancy
-            services for infrastructure, mining, agriculture, water and industrial requirements.
-          </p>
-          <div className="hero-buttons">
-            <a className="gold-btn big" href="#contact">Get a Consultation <ArrowRight size={18}/></a>
-            <a className="ghost-btn big" href={wa()} target="_blank" rel="noreferrer"><MessageCircle size={18}/> Chat on WhatsApp</a>
-          </div>
-          <div className="hero-meta">
-            <span><ShieldCheck size={17}/> Multi-disciplinary services</span>
-            <span><MapPinned size={17}/> Rajasthan</span>
-          </div>
-        </div>
-        <div className="hero-side-card">
-          <span>JB</span>
-          <p>Technical solutions<br/>for real-world requirements.</p>
-        </div>
-        <a className="scroll-cue" href="#about"><span>SCROLL TO EXPLORE</span><ChevronDown size={16}/></a>
-      </section>
+      <main id="main-content">
+        {/* =========================================================
+            HERO SECTION - Cinematic Industrial Engineering Identity
+           ========================================================= */}
+        <section id="home" className="hero-section">
+          {/* Real project photo backdrop */}
+          <div className="hero-backdrop-image" />
+          <div className="hero-overlay-dark" />
+          <div className="hero-technical-grid" />
 
-      <section className="intro section" id="about">
-        <div className="section-label">01 / ABOUT</div>
-        <div className="intro-grid">
-          <div>
-            <p className="kicker">TECHNICAL EXPERTISE</p>
-            <h2>From site investigation to technical insight.</h2>
-          </div>
-          <div>
-            <p className="lead">
-              JB Tech Consultants provides a broad range of technical testing, surveying,
-              exploration and engineering consultancy services.
-            </p>
-            <p className="muted">
-              Our service portfolio covers mining and minerals, geotechnical and soil
-              investigation, land and groundwater surveys, testing, drilling and structural
-              consultancy.
-            </p>
-          </div>
-        </div>
-      </section>
+          <div className="section-container hero-inner">
+            <div className="hero-content-col">
+              {/* Technical coordinates and badge */}
+              <div className="hero-top-badges">
+                <span className="hero-coords-pill">
+                  <span className="coords-dot" /> 24°53&apos;N 74°38&apos;E • Chittorgarh, RJ
+                </span>
+                <span className="hero-cert-pill">
+                  <ShieldCheck size={14} /> Certified Engineering Testing &amp; Surveys
+                </span>
+              </div>
 
-      <section className="services section" id="services">
-        <div className="section-top">
-          <div><div className="section-label">02 / SERVICES</div><h2>Technical services, <em>clearly delivered.</em></h2></div>
-          <p>Integrated services for testing, surveying, exploration and engineering requirements.</p>
-        </div>
+              {/* Main Headline */}
+              <h1 className="hero-main-title">
+                Engineering Confidence Through <em>Precision Testing &amp; Surveys.</em>
+              </h1>
 
-        <div className="service-grid">
-          {services.map(({title, icon: Icon, text}, i) => (
-            <article className="service-card" key={title}>
-              <div className="card-number">0{i + 1}</div>
-              <Icon className="service-icon" size={28} strokeWidth={1.5}/>
-              <h3>{title}</h3>
-              <p>{text}</p>
-              <a href={wa(title)} target="_blank" rel="noreferrer">Enquire on WhatsApp <ArrowRight size={15}/></a>
-            </article>
-          ))}
-        </div>
-      </section>
+              {/* Subheadline */}
+              <p className="hero-description">
+                Government contractors, mining operators, and infrastructure developers across
+                Rajasthan rely on <strong>JB Tech Consultants</strong> for certified geotechnical
+                investigations, mineral testing, diamond core drilling, and engineering surveying.
+              </p>
 
-      <section className="industries section dark" id="industries">
-        <div className="section-label light">03 / INDUSTRIES</div>
-        <div className="dark-heading"><h2>Built around diverse <em>technical needs.</em></h2><p>Services can support a range of sectors based on the client's specific requirement.</p></div>
-        <div className="industry-grid">
-          {industries.map(([name, Icon]) => (
-            <div className="industry-card" key={name}><Icon size={24}/><span>{name}</span><ArrowRight size={17}/></div>
-          ))}
-        </div>
-      </section>
+              {/* Primary Dual CTAs */}
+              <div className="hero-cta-buttons">
+                <Link href="#quote" className="btn-hero-primary">
+                  <span>Request a Technical Quote</span>
+                  <ArrowRight size={18} />
+                </Link>
+                <a
+                  href={createWhatsAppUrl()}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-hero-wa"
+                >
+                  <MessageCircle size={18} />
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
 
-      <section className="why section" id="why-us">
-        <div className="section-label">04 / WHY JB</div>
-        <div className="why-grid">
-          <div><h2>A technical partner for the <em>next decision.</em></h2></div>
-          <div className="reason-list">
-            {[
-              "Multi-disciplinary Technical Services",
-              "Testing & Surveying Solutions",
-              "Engineering-Focused Approach",
-              "Professional Consultation",
-              "Customer-Focused Service",
-              "Integrated Technical Solutions"
-            ].map((x, i) => <div className="reason" key={x}><b>0{i+1}</b><span>{x}</span><CheckCircle2 size={18}/></div>)}
-          </div>
-        </div>
-      </section>
+              {/* Key Highlights Grid (Verified facts, zero fake stats) */}
+              <div className="hero-features-bar">
+                <div className="hero-feature-item">
+                  <Compass size={18} className="text-gold" />
+                  <div>
+                    <strong>11 Core Disciplines</strong>
+                    <small>Geotechnical, Mining, Surveys &amp; Lab</small>
+                  </div>
+                </div>
 
-      <section className="process section">
-        <div className="section-top"><div><div className="section-label">05 / PROCESS</div><h2>A straightforward <em>technical process.</em></h2></div></div>
-        <div className="process-grid">
-          {[
-            ["01","Understand Your Requirement"],
-            ["02","Site / Sample Assessment"],
-            ["03","Testing / Survey / Investigation"],
-            ["04","Technical Analysis"],
-            ["05","Report & Consultation"]
-          ].map(([n,t]) => <div className="process-item" key={n}><span>{n}</span><div className="process-line"></div><h3>{t}</h3></div>)}
-        </div>
-      </section>
+                <div className="hero-feature-item">
+                  <Truck size={18} className="text-gold" />
+                  <div>
+                    <strong>Company-Owned Rigs</strong>
+                    <small>Heavy Diamond Core &amp; Rotary Units</small>
+                  </div>
+                </div>
 
-      <section className="gallery section" id="gallery">
-        <div className="section-top">
-          <div><div className="section-label">06 / BUSINESS GALLERY</div><h2>Real work. <em>Real place.</em></h2></div>
-          <p>Photos are loaded from the Google Places listing when API access is configured.</p>
-        </div>
-        <PlaceGallery />
-      </section>
-          <Reviews />
-      <section className="contact section" id="contact">
-        <div className="contact-panel">
-          <div className="contact-copy">
-            <div className="section-label light">07 / CONTACT</div>
-            <h2>Have a technical <em>requirement?</em></h2>
-            <p>Tell us what you need and start a conversation with JB Tech Consultants.</p>
-            <div className="contact-links">
-              <a href={`tel:${phone}`}><Phone size={18}/> +91 7728053323</a>
-              <a href={wa()} target="_blank" rel="noreferrer"><MessageCircle size={18}/> WhatsApp Us</a>
-              <a href={mapsUrl} target="_blank" rel="noreferrer"><MapPinned size={18}/> Open in Google Maps</a>
+                <div className="hero-feature-item">
+                  <ShieldCheck size={18} className="text-gold" />
+                  <div>
+                    <strong>Certified Reports</strong>
+                    <small>Decision-Ready Engineering Data</small>
+                  </div>
+                </div>
+
+                <div className="hero-feature-item">
+                  <MapPin size={18} className="text-gold" />
+                  <div>
+                    <strong>Chittorgarh HQ</strong>
+                    <small>Mobilization Across Rajasthan</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Hero Side Technical Card */}
+            <div className="hero-side-technical-card">
+              <div className="hero-side-card-glow" />
+              <div className="hero-side-card-content">
+                <div className="side-card-badge">DIRECT TECHNICAL CONSULTATION</div>
+                <div className="side-card-person">
+                  <div className="side-card-avatar">
+                    <User size={24} />
+                  </div>
+                  <div>
+                    <strong className="side-card-name">{businessInfo.leadPerson}</strong>
+                    <span className="side-card-role">{businessInfo.role}</span>
+                  </div>
+                </div>
+
+                <div className="side-card-specs">
+                  <div className="side-spec-item">
+                    <span>Field Office:</span>
+                    <strong>{businessInfo.addressShort}</strong>
+                  </div>
+                  <div className="side-spec-item">
+                    <span>Telephone:</span>
+                    <a href={`tel:${businessInfo.phone}`} className="side-card-tel">
+                      {businessInfo.phoneDisplay}
+                    </a>
+                  </div>
+                  <div className="side-spec-item">
+                    <span>Testing Fleet:</span>
+                    <strong>Truck &amp; Tractor Mounted Rigs</strong>
+                  </div>
+                </div>
+
+                <Link href="#quote" className="btn-side-card">
+                  <span>Enquire for Your Project</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
             </div>
           </div>
-          <form className="contact-form" action={wa()} method="get" target="_blank">
-            <label>Name<input name="name" placeholder="Your name" required /></label>
-            <label>Company<input name="company" placeholder="Company name" /></label>
-            <label>Phone<input name="phone" placeholder="+91" /></label>
-            <label>Service<select name="service" defaultValue=""><option value="" disabled>Select a service</option>{services.map(s=><option key={s.title}>{s.title}</option>)}</select></label>
-            <label className="full">Message<textarea name="message" placeholder="Tell us about your requirement..." rows={4}/></label>
-            <button className="gold-btn big full" type="submit">Send Enquiry on WhatsApp <ArrowRight size={18}/></button>
-          </form>
-        </div>
-      </section>
 
-      <section className="location section">
-        <div className="location-grid">
-          <div>
-            <div className="section-label">08 / LOCATION</div>
-            <h2>Find JB Tech <em>Consultants.</em></h2>
-            <p className="muted">Open the verified Google Maps listing for the latest business location and directions.</p>
-            <a className="gold-btn big" href={mapsUrl} target="_blank" rel="noreferrer"><MapPinned size={18}/> Get Directions</a>
-          </div>
-          <div className="map-card">
-            <div className="map-pattern"></div>
-            <MapPinned size={42}/>
-            <strong>JB TECH CONSULTANTS</strong>
-            <span>Google Maps location</span>
-            <a href={mapsUrl} target="_blank" rel="noreferrer">Open in Google Maps ↗</a>
-          </div>
-        </div>
-      </section>
-      
-      <footer className="footer">
-        <div className="footer-brand"><span className="brand-mark">JB</span><div><strong>JB TECH CONSULTANTS</strong><small>TECHNICAL TESTING · SURVEYING · EXPLORATION</small></div></div>
-        <div className="footer-contact"><a href={`tel:${phone}`}>+91 7728053323</a><a href={wa()} target="_blank" rel="noreferrer">WhatsApp</a><a href={mapsUrl} target="_blank" rel="noreferrer">Google Maps</a></div>
-        <p>© 2026 JB Tech Consultants. All rights reserved.</p>
-      </footer>
+          {/* Scroll Cue */}
+          <a className="hero-scroll-cue" href="#about" aria-label="Scroll to explore about section">
+            <span>SCROLL TO EXPLORE</span>
+            <ChevronDown size={15} />
+          </a>
+        </section>
 
+        {/* =========================================================
+            SECTION 01 - ABOUT EXECUTIVE SUMMARY
+           ========================================================= */}
+        <section className="section-wrapper about-section" id="about">
+          <div className="section-container">
+            <div className="section-label">01 / TECHNICAL PROFILE</div>
+            <div className="about-grid">
+              <div>
+                <span className="section-kicker">ENGINEERING &amp; GEOLOGICAL EXPERTISE</span>
+                <h2 className="section-title">
+                  From Subsurface Exploration to <em>Certified Engineering Insight.</em>
+                </h2>
+                <div className="about-quote-box">
+                  <p>
+                    &ldquo;Our mission is straightforward: deliver precise, uncompromised testing data
+                    and geological clarity so engineers and developers build with complete confidence.&rdquo;
+                  </p>
+                  <span className="about-author">— Niranjan Suthar, Technical Director</span>
+                </div>
+              </div>
+
+              <div className="about-text-col">
+                <p className="lead-paragraph">
+                  <strong>JB Tech Consultants</strong> is a trusted technical testing, surveying,
+                  and engineering consultancy based in Chittorgarh, Rajasthan.
+                </p>
+                <p className="body-paragraph">
+                  Operating with in-house laboratory testing facilities and company-owned mobile
+                  diamond core drilling rigs, we support highway projects, railway bridges,
+                  industrial plants, agricultural estates, and mining leases throughout Rajasthan.
+                </p>
+                <p className="body-paragraph">
+                  Our comprehensive capabilities bridge initial land surveying and groundwater
+                  detection, through core drilling and strata sampling, to detailed laboratory
+                  soil mechanics, mineral assays, and structural integrity evaluations.
+                </p>
+
+                <div className="about-pillars-grid">
+                  <div className="about-pillar">
+                    <CheckCircle2 size={16} className="text-gold" />
+                    <div>
+                      <strong>Field-to-Lab Integration</strong>
+                      <p>Complete control over sampling and laboratory analysis ensures uncompromised data fidelity.</p>
+                    </div>
+                  </div>
+                  <div className="about-pillar">
+                    <CheckCircle2 size={16} className="text-gold" />
+                    <div>
+                      <strong>Decisive Strata Reports</strong>
+                      <p>Actionable borehole logs, SBC calculations, and mineral percentages signed by specialists.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================
+            SECTION 02 - 11 CORE SERVICES
+           ========================================================= */}
+        <ServicesSection />
+
+        {/* =========================================================
+            SECTION 03 - INDUSTRIES SERVED
+           ========================================================= */}
+        <section className="section-wrapper industries-section dark-bg" id="industries">
+          <div className="section-container">
+            <div className="section-head-split">
+              <div>
+                <div className="section-label light">03 / SECTOR CAPABILITIES</div>
+                <h2 className="section-title light">
+                  Tailored Solutions for <em>Key Industries.</em>
+                </h2>
+                <p className="section-subtitle light">
+                  Every sector demands specific testing methodologies, tolerances, and compliance standards.
+                </p>
+              </div>
+              <div className="industries-head-action">
+                <a href={createWhatsAppUrl()} target="_blank" rel="noreferrer" className="btn-outline-wa-light">
+                  <MessageCircle size={16} /> Discuss Industry Requirement
+                </a>
+              </div>
+            </div>
+
+            <div className="industries-cards-grid">
+              {industriesData.map((ind) => {
+                const IndIcon = industryIconMap[ind.icon] || ShieldCheck;
+                return (
+                  <article className="industry-card-item" key={ind.name}>
+                    <div className="industry-card-header">
+                      <div className="industry-icon-box">
+                        <IndIcon size={24} />
+                      </div>
+                      <span className="industry-tagline">{ind.tagline}</span>
+                    </div>
+
+                    <h3 className="industry-name">{ind.name}</h3>
+                    <p className="industry-desc">{ind.desc}</p>
+
+                    <div className="industry-services-tags">
+                      <span className="tags-label">Relevant Services:</span>
+                      <div className="tags-chips">
+                        {ind.relevantServices.map((srv, sIdx) => (
+                          <span className="ind-service-pill" key={sIdx}>{srv}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================
+            SECTION 04 - WHY CHOOSE JB TECH CONSULTANTS
+           ========================================================= */}
+        <section className="section-wrapper why-section" id="why-us">
+          <div className="section-container">
+            <div className="section-label">04 / WHY PARTNER WITH US</div>
+            <div className="why-header-row">
+              <h2 className="section-title">
+                Engineered for <em>Trust &amp; Technical Accuracy.</em>
+              </h2>
+              <p className="section-subtitle">
+                We believe in verified field capabilities and rigorous laboratory standards, providing clients with genuine data they can build upon.
+              </p>
+            </div>
+
+            <div className="why-pillars-grid">
+              <div className="why-card">
+                <div className="why-number">01</div>
+                <h3>Rigorous Laboratory &amp; Field Protocols</h3>
+                <p>
+                  Tests are conducted following Bureau of Indian Standards (BIS) and standard testing methodologies. Calibrated equipment ensures high repeatability and data integrity.
+                </p>
+              </div>
+
+              <div className="why-card">
+                <div className="why-number">02</div>
+                <h3>Company-Owned Drilling Fleet</h3>
+                <p>
+                  We mobilize our own heavy-duty truck and tractor-mounted rotary diamond core drilling rigs, ensuring rapid field deployment without dependence on third-party machinery.
+                </p>
+              </div>
+
+              <div className="why-card">
+                <div className="why-number">03</div>
+                <h3>Decision-Ready Certified Reports</h3>
+                <p>
+                  Our technical reports contain full stratigraphic logs, graphical test curves, bearing capacity formulations, and actionable recommendations ready for structural engineers.
+                </p>
+              </div>
+
+              <div className="why-card">
+                <div className="why-number">04</div>
+                <h3>Direct Lead Consultant Oversight</h3>
+                <p>
+                  Technical Director <strong>Niranjan Suthar</strong> personally reviews project investigations, ensuring clients receive experienced engineering guidance from day one.
+                </p>
+              </div>
+
+              <div className="why-card">
+                <div className="why-number">05</div>
+                <h3>Southern Rajasthan Geotechnical Familiarity</h3>
+                <p>
+                  Decades of collective experience working in the hard rock terrain, mineral belts, and soil profiles of Chittorgarh, Bhilwara, Udaipur, Kota, and Rajsamand.
+                </p>
+              </div>
+
+              <div className="why-card">
+                <div className="why-number">06</div>
+                <h3>Integrated Field-to-Lab Workflow</h3>
+                <p>
+                  No fragmentation. From the first DGPS topographical point or diamond borehole to the final chemical assay and structural signoff, we manage the entire technical cycle.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================
+            SECTION 05 - 4-STEP TECHNICAL WORK PROCESS
+           ========================================================= */}
+        <section className="section-wrapper process-section dark-bg" id="process">
+          <div className="section-container">
+            <div className="section-label light">05 / HOW WE WORK</div>
+            <h2 className="section-title light">
+              A Transparent, <em>Four-Phase Engineering Process.</em>
+            </h2>
+            <p className="section-subtitle light">
+              Ensuring clear expectations, standardized methodologies, and timely deliverables on every project.
+            </p>
+
+            <div className="process-timeline-grid">
+              <div className="process-step-card">
+                <span className="step-count">PHASE 01</span>
+                <div className="step-line-bar" />
+                <h3>Scope Mapping &amp; Proposal</h3>
+                <p>
+                  We review your project drawings, site location, required testing standards (IS/ASTM), and formulate an itemized technical proposal.
+                </p>
+              </div>
+
+              <div className="process-step-card">
+                <span className="step-count">PHASE 02</span>
+                <div className="step-line-bar" />
+                <h3>Field Mobilization &amp; Sampling</h3>
+                <p>
+                  Our drilling rigs, survey crews, or sampling technicians arrive on-site for core drilling, SPT tests, DGPS survey, or material sample collection.
+                </p>
+              </div>
+
+              <div className="process-step-card">
+                <span className="step-count">PHASE 03</span>
+                <div className="step-line-bar" />
+                <h3>Laboratory Testing &amp; Analysis</h3>
+                <p>
+                  Collected soil, rock, aggregate, or water samples undergo rigorous physical and chemical analysis inside our controlled testing environment.
+                </p>
+              </div>
+
+              <div className="process-step-card">
+                <span className="step-count">PHASE 04</span>
+                <div className="step-line-bar" />
+                <h3>Certified Report &amp; Consultation</h3>
+                <p>
+                  Delivery of certified, signed engineering reports with full borehole logs, test curves, and a technical briefing with our consultants.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================
+            SECTION 06 - FIELD PROJECT PHOTO GALLERY (11 PHOTOS)
+           ========================================================= */}
+        <section className="section-wrapper gallery-section" id="gallery">
+          <div className="section-container">
+            <div className="section-head-split">
+              <div>
+                <div className="section-label">06 / ON-SITE EVIDENCE</div>
+                <h2 className="section-title">
+                  Real Equipment. <em>Real Operations.</em>
+                </h2>
+                <p className="section-subtitle">
+                  Browse 11 genuine project photographs documenting our drilling rigs, core recovery, field geological logging, and on-site testing teams.
+                </p>
+              </div>
+              <div className="gallery-head-note">
+                <span className="gallery-badge-real">
+                  <ShieldCheck size={14} /> 100% Authentic Project Photography
+                </span>
+              </div>
+            </div>
+
+            <PlaceGallery />
+          </div>
+        </section>
+
+        {/* =========================================================
+            SECTION 07 - VERIFIED CLIENT REVIEWS (10 REVIEWS)
+           ========================================================= */}
+        <Reviews />
+
+        {/* =========================================================
+            SECTION 08 - SERVICE LOCATION & RAJASTHAN COVERAGE
+           ========================================================= */}
+        <section className="section-wrapper location-section" id="location">
+          <div className="section-container">
+            <div className="section-label">07 / FIND OUR OFFICE</div>
+            <div className="location-split-grid">
+              <div className="location-info-pane">
+                <h2 className="section-title">
+                  Visit Our <em>Chittorgarh Headquarters.</em>
+                </h2>
+                <p className="location-desc">
+                  Our central office and testing facility is located on MP Setu Marg in Basant Nagar,
+                  serving as our coordination hub for field exploration teams and core drilling rigs across Rajasthan.
+                </p>
+
+                <div className="location-address-box">
+                  <MapPin size={22} className="text-gold" />
+                  <div>
+                    <strong>JB TECH CONSULTANTS</strong>
+                    <address className="address-full">
+                      {businessInfo.address}
+                    </address>
+                    <p className="address-landmark">
+                      <strong>Landmark:</strong> {businessInfo.landmark}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="location-regions-box">
+                  <h4>Regional Project Deployment Coverage:</h4>
+                  <div className="regions-tags">
+                    {businessInfo.serviceRegions.map((region) => (
+                      <span className="region-chip" key={region}>
+                        <CheckCircle2 size={12} className="text-gold" /> {region}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="location-actions">
+                  <a
+                    href={businessInfo.mapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-primary-quote"
+                  >
+                    <MapPinned size={18} />
+                    <span>Open in Google Maps for Directions</span>
+                    <ExternalLink size={14} />
+                  </a>
+                  <a href={`tel:${businessInfo.phone}`} className="btn-outline-wa">
+                    <Phone size={16} />
+                    <span>Call Ahead: {businessInfo.phoneDisplay}</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Visual Map Destination Card */}
+              <div className="location-map-card">
+                <div className="map-card-pattern" />
+                <div className="map-card-inner">
+                  <div className="map-pin-pulse">
+                    <MapPinned size={48} className="text-gold" />
+                  </div>
+                  <h3>JB TECH CONSULTANTS</h3>
+                  <p className="map-card-addr">{businessInfo.addressShort}, Rajasthan – 312001</p>
+                  <span className="map-card-lead">Technical Lead: <strong>{businessInfo.leadPerson}</strong></span>
+                  <div className="map-card-hours">
+                    <Clock size={14} /> <span>{businessInfo.hours}</span>
+                  </div>
+                  <a
+                    href={businessInfo.mapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-map-card-action"
+                  >
+                    <span>View Verified Google Maps Listing</span>
+                    <ExternalLink size={14} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================
+            SECTION 09 - LEAD GENERATION / QUOTE FORM
+           ========================================================= */}
+        <section className="section-wrapper quote-section dark-bg">
+          <div className="section-container">
+            <QuoteForm />
+          </div>
+        </section>
+      </main>
+
+      <Footer />
       <WhatsAppButton />
-    </main>
+    </div>
   );
 }
