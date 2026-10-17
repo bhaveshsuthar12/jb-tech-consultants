@@ -1,6 +1,6 @@
 "use client";
 
-import { Star, ShieldCheck, ExternalLink, MessageSquareQuote } from "lucide-react";
+import { Star, ExternalLink, MessageSquareQuote } from "lucide-react";
 import { clientReviewsData, businessInfo } from "../data/servicesData";
 
 export default function Reviews() {
@@ -70,12 +70,7 @@ export default function Reviews() {
                   <p className="review-text">"{review.text}"</p>
                 </div>
 
-                <div className="review-card-footer">
-                  <span className="review-verified-pill">
-                    <ShieldCheck size={13} /> Verified Client Review
-                  </span>
-                  <span className="review-platform">Google Maps</span>
-                </div>
+
               </article>
             );
           })}

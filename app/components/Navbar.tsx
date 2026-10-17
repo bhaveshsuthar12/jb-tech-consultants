@@ -8,8 +8,6 @@ import {
   Menu,
   X,
   ChevronDown,
-  MapPin,
-  Clock,
   ArrowRight,
   ShieldCheck,
   Pickaxe,
@@ -67,37 +65,6 @@ export function Navbar() {
 
   return (
     <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
-      {/* Top utility contact strip */}
-      <div className="top-bar">
-        <div className="top-bar-inner">
-          <div className="top-bar-left">
-            <span className="top-item">
-              <MapPin size={13} className="text-gold" />
-              <span>{businessInfo.addressShort}, Rajasthan</span>
-            </span>
-            <span className="top-item hide-mobile">
-              <Clock size={13} className="text-gold" />
-              <span>Mon – Sat: 9:00 AM – 7:30 PM</span>
-            </span>
-          </div>
-          <div className="top-bar-right">
-            <a href={`tel:${businessInfo.phone}`} className="top-item top-link">
-              <Phone size={13} className="text-gold" />
-              <strong>{businessInfo.phoneDisplay}</strong>
-            </a>
-            <a
-              href={createWhatsAppUrl()}
-              target="_blank"
-              rel="noreferrer"
-              className="top-item top-link top-wa hide-mobile"
-            >
-              <MessageCircle size={13} />
-              <span>WhatsApp Chat</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main navigation header */}
       <nav className="main-nav" aria-label="Main Navigation">
         <div className="nav-container">
