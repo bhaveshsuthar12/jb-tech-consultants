@@ -104,7 +104,7 @@ export function Footer() {
 
           <h4 className="footer-col-title" style={{ marginTop: "24px" }}>Coverage Areas</h4>
           <p className="footer-coverage-text">
-            Chittorgarh • Bhilwara • Udaipur • Kota • Rajsamand • Nimbahera • Southern Rajasthan
+            Chittorgarh • Bhilwara • Udaipur • Kota • Rajsamand • Nimbahera •  Rajasthan and All over India
           </p>
         </div>
 
@@ -175,7 +175,7 @@ export function Footer() {
           <div className="footer-bottom-meta">
             <span>Lead Consultant: <strong>{businessInfo.leadPerson}</strong></span>
             <span>•</span>
-            <span>Chittorgarh, Rajasthan – 312001</span>
+            <span>Udaipur, Rajasthan – 313003</span>
           </div>
         </div>
       </div>

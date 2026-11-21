@@ -431,11 +431,6 @@ export default function Home() {
                   Browse 11 genuine project photographs documenting our drilling rigs, core recovery, field geological logging, and on-site testing teams.
                 </p>
               </div>
-              <div className="gallery-head-note">
-                <span className="gallery-badge-real">
-                  <ShieldCheck size={14} /> 100% Authentic Project Photography
-                </span>
-              </div>
             </div>
 
             <PlaceGallery />
