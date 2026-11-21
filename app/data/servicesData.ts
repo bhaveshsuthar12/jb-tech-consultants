@@ -619,7 +619,7 @@ export const businessInfo = {
   state: "Rajasthan",
   pincode: "313003",
   country: "India",
-  mapsUrl: "https://maps.app.goo.gl/EpYLHGk3XWV8uBSZ7?g_st=ac",
+  mapsUrl: "https://maps.app.goo.gl/aGk54GGHbP8EhkAY6?g_st=aw",
   waUrl: "https://wa.me/917728053323",
   hours: "Monday – Saturday: 9:00 AM – 7:30 PM (Sunday by Appointment)",
   serviceRegions: [
