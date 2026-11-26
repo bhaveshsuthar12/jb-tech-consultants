@@ -7,20 +7,17 @@ import {
   MapPinned,
   ShieldCheck,
   Compass,
-  Layers3,
   Gem,
   HardHat,
   Sprout,
   Droplets,
   Building2,
   FlaskConical,
-  Wrench,
   Clock,
   ChevronDown,
   User,
   MapPin,
   ExternalLink,
-  Award,
   Truck
 } from "lucide-react";
 import { Navbar } from "./components/Navbar";
@@ -127,7 +124,7 @@ export default function Home() {
                 <div className="hero-feature-item">
                   <MapPin size={18} className="text-gold" />
                   <div>
-                    <strong>Chittorgarh HQ</strong>
+                    <strong>Udaipur</strong>
                     <small>Mobilization Across Rajasthan</small>
                   </div>
                 </div>
@@ -508,7 +505,7 @@ export default function Home() {
                     <MapPinned size={48} className="text-gold" />
                   </div>
                   <h3>JB TECH CONSULTANTS</h3>
-                  <p className="map-card-addr">{businessInfo.addressShort}, Rajasthan – 312001</p>
+                  <p className="map-card-addr">{businessInfo.addressShort}, Rajasthan – {businessInfo.pincode}</p>
                   <span className="map-card-lead">Technical Lead: <strong>{businessInfo.leadPerson}</strong></span>
                   <div className="map-card-hours">
                     <Clock size={14} /> <span>{businessInfo.hours}</span>

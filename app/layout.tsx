@@ -79,16 +79,16 @@ const jsonLd = {
   priceRange: "₹₹",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "MP Setu Marg, Basant Nagar, Krishna Nagar",
-    addressLocality: "Chittorgarh",
+    streetAddress: "Plot 6, Arihant Colony, Road Number 3, Madri Industrial Area",
+    addressLocality: "Udaipur",
     addressRegion: "Rajasthan",
-    postalCode: "312001",
+    postalCode: "313003",
     addressCountry: "IN"
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 24.8887,
-    longitude: 74.6269
+    latitude: 24.5854,
+    longitude: 73.7125
   },
   founder: {
     "@type": "Person",
